@@ -1,0 +1,17 @@
+.formDeal {
+  max-width: 500px;
+}
+/* body {
+  background-color: aquamarine;
+} */
+.err {
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.dealsTable {
+  margin-top: 30px;
+}

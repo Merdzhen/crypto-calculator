@@ -1,0 +1,57 @@
+<script defer src="/js/deals.js"></script>
+
+<form class="formDeal js-form-deal">
+  <h5>Add new deal</h5>
+  <label for="coinDeal">Enter official full name of the coin</label>
+  <input type="text" name="coinDeal"  id="coinDeal" placeholder="Coin name"><br>
+  <label for="currencyDeal">Enter currency code (e.g. USD, EUR etc.)</label>
+  <input type="text" name="currencyDeal"  id="currencyDeal" placeholder="Currency name"><br>
+  <label for="quantityDeal">Enter quantity of coins</label>
+  <input type="number" name="quantityDeal"  id="quantityDeal" placeholder="Quantity"><br>
+  <label for="dateDeal">Purchase date:</label>
+  <input type="date" id="dateDeal" name="dateDeal"><br>
+  <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+<p class="hidden err js-reg-err"></p>
+<p class="hidden js-reg-answer"></p>
+
+
+
+<table class="table dealsTable">
+  <caption>Your deals</caption>
+  <thead>
+    <tr class="table-light">
+      <th>Date</th>
+      <th>Coin</th>
+      <th>Currency</th>
+      <th>Quantity</th>
+      <th>Purchace price</th>
+      <th>Purchace cost</th>
+      <th>Current price</th>
+      <th>Current cost</th>
+      <th>Current profit</th>
+    </tr>
+  </thead>
+  <tbody class="js-deals-table-body">
+    {{#if deals}}
+    {{#each deals}}
+      {{#if this.profit}}
+      <tr class="table-success">
+      {{else}}
+      <tr class="table-danger">
+      {{/if}}
+      {{!-- <tr class="table-danger"> --}}
+        <td>{{this.purchase_date}}</td>
+        <td>{{this.coin}}</td>
+        <td>{{this.currency}}</td>
+        <td>{{this.quantity}}</td>
+        <td>{{this.purchace_price_short}} {{this.currency}}</td>
+        <td>{{this.purchace_cost_short}} {{this.currency}}</td>
+        <td>{{this.current_price_short}} {{this.currency}}</td>
+        <td>{{this.current_cost_short}} {{this.currency}}</td>
+        <td>{{this.current_profit_short}} {{this.currency}}</td>
+      </tr>
+    {{/each}}
+    {{/if}} 
+  </tbody>
+</table>
