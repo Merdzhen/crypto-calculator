@@ -1,0 +1,27 @@
+<script defer src="/js/index.js"></script>
+
+<main>
+  <h4>Cryptocurrency names directory</h4>
+  <input class='js-search-input' onkeyup='searchTable()' type='text' placeholder="search coin">
+  <img src="/img/search.png" alt="search" class="search-icon">
+  <table class="table table-light">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Symbol</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody class='js-coinlist-table-body'>
+      {{#if coinList}}
+      {{#each coinList}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.symbol}}</td>
+          <td>{{this.name}}</td>
+        </tr>
+      {{/each}}
+      {{/if}} 
+    </tbody>
+  </table>
+</main>

@@ -4,15 +4,7 @@
 <main>
   {{!-- <p id="stock-price">---</p> --}}
 
-
-  {{!-- {{#each coinList}}
-  <p>{{this.id}}</p>
-  <p>{{this.symbol}}</p>
-  <p>{{this.name}}</p>
-  <hr>
-  {{/each}} --}}
   <h4>Cryptocurrency Prices by Market Cap</h4>
-  {{!-- <input id='js-search-input' onkeyup='searchTable()' type='text'> --}}
   <input class='js-search-input' onkeyup='searchTable()' type='text'>
   <img src="/img/search.png" alt="search" class="search-icon">
   <table class="table table-light" id="js-main-table">
@@ -22,13 +14,12 @@
         <th onclick="sortTable(1)" class="cursor">Coin</th>
         <th></th>
         <th onclick="sortTable(3)" class="cursor">ID</th>
-        <th onclick="sortTableDollar(4)" class="cursor">Price</th>
-        <th onclick="sortTablePercent(5)" class="cursor">24h change</th>
-        <th onclick="sortTableDollar(6)" class="cursor">Market Cap</th>
+        <th onclick="sortTableNum(4)" class="cursor">Price</th>
+        <th onclick="sortTableNum(5)" class="cursor">24h change</th>
+        <th onclick="sortTableNum(6)" class="cursor">Market Cap</th>
         <th onclick="sortTableNum(7)" class="cursor">Market Cap rank</th>
       </tr>
     </thead>
-    {{!-- <tbody id='js-main-table-body'> --}}
     <tbody class='js-main-table-body'>
       {{#if coinList}}
       {{#each coinList}}

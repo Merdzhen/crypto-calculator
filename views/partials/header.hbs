@@ -3,27 +3,31 @@
     <a class="navbar-brand" href="/">Crypto profit</a>
     {{#unless user}}
       <p>Please login/register to calculate your profit</p>
-      <div class="nav-item">
-        <a class="nav-link" href="/login"><button class="btn btn-info">Login / Register</button></a>
-      </div>
     {{/unless}}
 
-  {{#if user}}
     <div id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        
         <li class="nav-item">
-          Hello, {{user}}!
+          <a class="nav-link" href="/coinslist"><button class="btn btn-info">Coins List</button></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile"><button class="btn btn-info">My deals</button></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout"><button class="btn btn-warning">Logout</button></a>
-        </li>
-        
+        {{#if user}}
+          <li class="nav-item">
+            Hello, {{user}}!
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile"><button class="btn btn-info">My deals</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><button class="btn btn-warning">Logout</button></a>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><button class="btn btn-info">Login / Register</button></a>
+          </li>
+        {{/if}}
       </ul>
     </div>
-  {{/if}}
+
+    
   </div>
 </nav>

@@ -24,4 +24,15 @@ indexRouter.get('/', async (req, res) => {
   }
 });
 
+indexRouter.get('/coinslist', async (req, res) => {
+  try {
+    const coinListAll = await CoinGeckoClient.coins.list();
+    const coinList = coinListAll.data;
+    console.log(coinList[0]);
+    res.render('coinslist', { coinList });
+  } catch (err) {
+    res.send(err.message);
+  }
+});
+
 module.exports = indexRouter;
