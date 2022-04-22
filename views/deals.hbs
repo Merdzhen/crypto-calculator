@@ -1,4 +1,5 @@
 <script defer src="/js/deals.js"></script>
+<script defer src="/js/index.js"></script>
 
 <form class="formDeal js-form-deal">
   <h5>Add new deal</h5>
@@ -7,7 +8,7 @@
   <label for="currencyDeal">Enter currency code (e.g. USD, EUR etc.)</label>
   <input type="text" name="currencyDeal"  id="currencyDeal" placeholder="Currency name"><br>
   <label for="quantityDeal">Enter quantity of coins</label>
-  <input type="number" name="quantityDeal"  id="quantityDeal" placeholder="Quantity"><br>
+  <input type="number" step="any" name="quantityDeal"  id="quantityDeal" placeholder="Quantity"><br>
   <label for="dateDeal">Purchase date:</label>
   <input type="date" id="dateDeal" name="dateDeal"><br>
   <button type="submit" class="btn btn-primary">Calculate</button>
@@ -15,32 +16,33 @@
 <p class="hidden err js-reg-err"></p>
 <p class="hidden js-reg-answer"></p>
 
-
-
-<table class="table dealsTable">
-  <caption>Your deals</caption>
+<br>
+<h4>Your deals</h4>
+<input class='js-search-input' onkeyup='searchTable()' type='text'>
+<img src="/img/search.png" alt="search" class="search-icon">
+<table class="table table-light dealsTable" id="js-deals-table">
   <thead>
     <tr class="table-light">
-      <th>Date</th>
-      <th>Coin</th>
-      <th>Currency</th>
-      <th>Quantity</th>
-      <th>Purchace price</th>
-      <th>Purchace cost</th>
-      <th>Current price</th>
-      <th>Current cost</th>
-      <th>Current profit</th>
+      <th onclick="sortTable(0)" class="cursor">Date</th>
+      <th onclick="sortTable(1)" class="cursor">Coin</th>
+      <th onclick="sortTable(2)" class="cursor">Currency</th>
+      <th onclick="sortTableNum(3)" class="cursor">Quantity</th>
+      <th onclick="sortTableCurrency(4)" class="cursor">Purchace price</th>
+      <th onclick="sortTableCurrency(5)" class="cursor">Purchace cost</th>
+      <th onclick="sortTableCurrency(6)" class="cursor">Current price</th>
+      <th onclick="sortTableCurrency(7)" class="cursor">Current cost</th>
+      <th onclick="sortTableCurrency(8)" class="cursor">Current profit</th>
     </tr>
   </thead>
   <tbody class="js-deals-table-body">
     {{#if deals}}
     {{#each deals}}
-      {{#if this.profit}}
+      {{!-- {{#if this.profit}}
       <tr class="table-success">
       {{else}}
       <tr class="table-danger">
-      {{/if}}
-      {{!-- <tr class="table-danger"> --}}
+      {{/if}} --}}
+      <tr>
         <td>{{this.purchase_date}}</td>
         <td>{{this.coin}}</td>
         <td>{{this.currency}}</td>
@@ -49,7 +51,12 @@
         <td>{{this.purchace_cost_short}} {{this.currency}}</td>
         <td>{{this.current_price_short}} {{this.currency}}</td>
         <td>{{this.current_cost_short}} {{this.currency}}</td>
-        <td>{{this.current_profit_short}} {{this.currency}}</td>
+        {{!-- <td>{{this.current_profit_short}} {{this.currency}}</td> --}}
+        {{#if this.profit}}
+        <td class="green-text">{{this.current_profit_short}} {{this.currency}}</td>
+        {{else}}
+        <td class="red-text">{{this.current_profit_short}} {{this.currency}}</td>
+        {{/if}}
       </tr>
     {{/each}}
     {{/if}} 

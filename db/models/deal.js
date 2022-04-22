@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     quantity: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
     },
     purchase_date: {
       allowNull: false,

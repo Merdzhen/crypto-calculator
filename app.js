@@ -27,6 +27,10 @@ app.use('/', dealsRouter);
 // app.use('/tags', tagsRouter);
 app.use('/', indexRouter);
 
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
+
 // Запустить сервер — начать прослушивание порта
 app.listen(PORT, async () => {
   /* eslint-disable no-console */

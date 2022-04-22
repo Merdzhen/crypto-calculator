@@ -5,11 +5,11 @@ const dealsTable = document.querySelector('.js-deals-table-body');
 
 dealForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  console.log('form');
+  // console.log('form');
   // console.log('editor!!', registerForm);
   // console.log(e.target);
-  const coin = e.target.coinDeal.value;
-  const currency = e.target.currencyDeal.value;
+  const coin = e.target.coinDeal.value.toLowerCase();
+  const currency = e.target.currencyDeal.value.toLowerCase();
   const purchase_date = e.target.dateDeal.value;
   const quantity = e.target.quantityDeal.value;
 
@@ -29,48 +29,41 @@ dealForm.addEventListener('submit', async (e) => {
 
     const result = await response.json();
 
-    if (result.success) { // скажем что все ок если получили статус ok
+    if (result.success) { // если получили статус success
       regErr.style.display = 'none';
       regAnswer.style.display = 'initial';
       regAnswer.innerHTML = 'New deal added';
       await dealForm.reset();
       const newDeal = document.createElement('tr');
-      if (result.profit > 0) {
-        newDeal.innerHTML = `
+      newDeal.innerHTML = `
         <tr>
           <td>${purchase_date}</td>
-          <td>${coin}</td>
-          <td>${currency}</td>
+          <td>${coin.slice(0, 1).toUpperCase()}${coin.slice(1).toLowerCase()}</td>
+          <td>${currency.toUpperCase()}</td>
           <td>${quantity}</td>
-          <td>${result.purchacePrice} ${currency}</td>
-          <td>${result.purchaceCost} ${currency}</td>
-          <td>${result.currentPrice} ${currency}</td>
-          <td>${result.currentCost} ${currency}</td>
-          <td>${result.currentProfit} ${currency}</td>
+          <td>${result.purchacePrice} ${currency.toUpperCase()}</td>
+          <td>${result.purchaceCost} ${currency.toUpperCase()}</td>
+          <td>${result.currentPrice} ${currency.toUpperCase()}</td>
+          <td>${result.currentCost} ${currency.toUpperCase()}</td>
+          <td class="current-profit">${result.currentProfit} ${currency.toUpperCase()}</td>
         </tr>`;
+      if (result.profit) {
         newDeal.classList.add('table-success');
         dealsTable.prepend(newDeal);
+        const profitAmount = document.querySelector('.current-profit');
+        profitAmount.classList.add('green-text');
       } else {
-        newDeal.innerHTML = `
-        <tr>
-          <td>${purchase_date}</td>
-          <td>${coin}</td>
-          <td>${currency}</td>
-          <td>${quantity}</td>
-          <td>${result.purchacePrice} ${currency}</td>
-          <td>${result.purchaceCost} ${currency}</td>
-          <td>${result.currentPrice} ${currency}</td>
-          <td>${result.currentCost} ${currency}</td>
-          <td>${result.currentProfit} ${currency}</td>
-        </tr>`;
         newDeal.classList.add('table-danger');
         dealsTable.prepend(newDeal);
+        const profitAmount = document.querySelector('.current-profit');
+        profitAmount.classList.add('red-text');
       }
     } else { // если ошибка выводим ошибку
       regErr.style.display = 'initial';
       regErr.innerHTML = result.message;
     }
   } else {
+    regAnswer.style.display = 'none';
     regErr.style.display = 'initial';
     regErr.innerHTML = 'Fill in all fields';
   }

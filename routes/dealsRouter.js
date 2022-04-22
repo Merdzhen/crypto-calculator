@@ -7,7 +7,7 @@ const CoinGeckoClient = new CoinGecko(); // 2. Initiate the CoinGecko API Client
 
 dealsRouter.get('/deals', async (req, res) => {
   try {
-    const deals = await Deal.findAll({ where: { user_id: 1 }, raw: true, order: [['id', 'ASC']] });
+    const deals = await Deal.findAll({ where: { user_id: 1 }, raw: true, order: [['purchase_date', 'DESC']] });
     // console.log(deals);
     const coinArr = deals.map((el) => el.coin.toLowerCase());
     const currencyArr = deals.map((el) => el.currency.toLowerCase());
@@ -58,13 +58,6 @@ dealsRouter.post('/deal/new', async (req, res) => {
     const {
       coin, currency, purchase_date, quantity,
     } = req.body;
-    await Deal.create({
-      coin,
-      currency,
-      purchase_date,
-      quantity,
-      user_id: 1,
-    });
 
     const date = `${purchase_date.slice(-2)}-${purchase_date.slice(5, 7)}-${purchase_date.slice(0, 4)}`;
     const historicData = await CoinGeckoClient.coins.fetchHistory(coin, { date });
@@ -76,15 +69,25 @@ dealsRouter.post('/deal/new', async (req, res) => {
     const currentCost = currentPrice * quantity;
     const currentProfit = currentCost - purchaceCost;
 
-    res.send({
-      success: true,
-      purchacePrice: purchacePrice.toLocaleString(),
-      purchaceCost: purchaceCost.toLocaleString(),
-      currentPrice: currentPrice.toLocaleString(),
-      currentCost: currentCost.toLocaleString(),
-      currentProfit: currentProfit.toLocaleString(),
-      profit: currentProfit > 0,
-    });
+    if (purchacePrice && currentPrice) {
+      await Deal.create({
+        coin: `${coin.slice(0, 1).toUpperCase()}${coin.slice(1).toLowerCase()}`,
+        currency: currency.toUpperCase(),
+        purchase_date,
+        quantity,
+        user_id: 1,
+      });
+
+      res.send({
+        success: true,
+        purchacePrice: purchacePrice.toLocaleString(),
+        purchaceCost: purchaceCost.toLocaleString(),
+        currentPrice: currentPrice.toLocaleString(),
+        currentCost: currentCost.toLocaleString(),
+        currentProfit: currentProfit.toLocaleString(),
+        profit: currentProfit > 0,
+      });
+    }
   } catch (err) {
     res.send({ success: false, message: err.message });
   }

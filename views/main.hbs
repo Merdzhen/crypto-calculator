@@ -1,17 +1,54 @@
-<script defer src="/js/crypto.js"></script>
+{{!-- <script defer src="/js/crypto.js"></script> --}}
+<script defer src="/js/index.js"></script>
 
-<p id="stock-price">---</p>
+<main>
+  {{!-- <p id="stock-price">---</p> --}}
 
 
-<p id="coin-1">ETH</p>
-<p id="currency-1">USD</p>
-<p id="date-1">05.08.2020</p>
-<p id="purchase-price-1"></p>
-<p id="purchase-cost-1"></p>
-<p id="current-price-1"></p>
-<p id="current-cost-1"></p>
-<p id="profit-1"></p>
+  {{!-- {{#each coinList}}
+  <p>{{this.id}}</p>
+  <p>{{this.symbol}}</p>
+  <p>{{this.name}}</p>
+  <hr>
+  {{/each}} --}}
+  <h4>Cryptocurrency Prices by Market Cap</h4>
+  {{!-- <input id='js-search-input' onkeyup='searchTable()' type='text'> --}}
+  <input class='js-search-input' onkeyup='searchTable()' type='text'>
+  <img src="/img/search.png" alt="search" class="search-icon">
+  <table class="table table-light" id="js-main-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th onclick="sortTable(1)" class="cursor">Coin</th>
+        <th></th>
+        <th onclick="sortTable(3)" class="cursor">ID</th>
+        <th onclick="sortTableDollar(4)" class="cursor">Price</th>
+        <th onclick="sortTablePercent(5)" class="cursor">24h change</th>
+        <th onclick="sortTableDollar(6)" class="cursor">Market Cap</th>
+        <th onclick="sortTableNum(7)" class="cursor">Market Cap rank</th>
+      </tr>
+    </thead>
+    {{!-- <tbody id='js-main-table-body'> --}}
+    <tbody class='js-main-table-body'>
+      {{#if coinList}}
+      {{#each coinList}}
+        <tr>
+          <td><img src="{{this.image}}" class="coin-icon" alt="coin icon"></td>
+          <td>{{this.name}}</td>
+          <td>{{this.symbol}}</td>
+          <td>{{this.id}}</td>
+          <td>${{this.current_price}}</td>
+          {{#if this.price_change_percentage_24h_growth}}
+            <td class="green-text">{{this.price_change_percentage_24h}}%</td>
+          {{else}}
+            <td class="red-text">{{this.price_change_percentage_24h}}%</td>
+          {{/if}}
+          <td>${{this.market_cap}}</td>
+          <td>{{this.market_cap_rank}}</td>
+        </tr>
+      {{/each}}
+      {{/if}} 
+    </tbody>
+  </table>
 
-{{#each coinList}}
-<p>{{this}}</p>
-{{/each}}
+</main>
