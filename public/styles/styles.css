@@ -4,9 +4,9 @@ main {
 }
 
 /* ------- deals ------- */
-.formDeal {
-  max-width: 500px;
-}
+/* .formDeal {
+  max-width: 700px;
+} */
 
 .err {
   color: red;
@@ -41,4 +41,33 @@ main {
 .search-icon {
   width: 20px;
   height: 20px;
+}
+
+/* login/register */
+.register-div {
+  flex: 1 1 auto; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
+}
+
+.register-text {
+  align-self: center; 
+  color: #156fd0;
+  margin-top: 30px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.err {
+  color: red;
+}
+
+.hidden {
+  display: none;
 }

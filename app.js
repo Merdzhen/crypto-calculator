@@ -3,13 +3,28 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const hbs = require('hbs');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const { sequelize } = require('./db/models');
 const dealsRouter = require('./routes/dealsRouter');
 const indexRouter = require('./routes/indexRouter');
-// const tagsRouter = require('./routes/tagsRouter');
+const userRouter = require('./routes/userRouter');
+const { userName, sessionLogger } = require('./middleware/common');
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
+
+const sessionConfig = {
+  store: new FileStore(),
+  name: 'MyCookieName',
+  secret: process.env.SESSION_SECRET ?? 'secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 30, // 30 дней - секунда минута час сутки мес
+    httpOnly: true,
+  },
+};
 
 app.set('view engine', 'hbs'); // задать движок для генерации шаблонов
 app.set('views', path.join(__dirname, 'views')); // задать папку с шаблонами
@@ -22,9 +37,13 @@ app.use(morgan('dev')); // для логирования входящих зап
 // app.use(testMiddleware); // срабатывает на всех входящих запросах
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session(sessionConfig));
+// app.use(sessionLogger);
+app.use(userName);
+
 // Подключить роутеры
 app.use('/', dealsRouter);
-// app.use('/tags', tagsRouter);
+app.use('/', userRouter);
 app.use('/', indexRouter);
 
 app.get('*', (req, res) => {

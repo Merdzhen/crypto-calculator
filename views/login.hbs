@@ -1,0 +1,22 @@
+<script defer src="/js/login.js"></script>
+
+<div class="register-div">
+  <h3 class="register-text">If you do not have a profile, you can register here</h3>
+  <form class="js-register register-form">
+    <input name="inputName" placeholder="Enter name" type="text" minlength="2" style="margin: 5px;">
+    <input name="inputMail" placeholder="Enter email" type="email" style="margin: 5px;">
+    <input name="inputPass" placeholder="Enter password" type="password" minlength="6" style="margin: 5px;">
+    <button type="submit" style="margin: 5px;">Register</button>
+  </form>
+  <p class="hidden err js-reg-err"></p>
+  <p class="hidden js-reg-answer"></p>
+
+  <h3 class="register-text">If you have already registered please login here</h3>
+  {{!-- <form method="POST" action="/login" class="register-form"> --}}
+  <form class="js-login register-form">
+    <input name="inputMail" placeholder="Enter email" type="email" style="margin: 5px;">
+    <input name="inputPass" placeholder="Enter password" type="password" minlength="6" style="margin: 5px;">
+    <button type="submit" style="margin: 5px;">Login</button>
+  </form>
+  <p class="hidden err js-login-err"></p>
+</div>
