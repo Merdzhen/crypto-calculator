@@ -1,4 +1,4 @@
 # crypto-calculator
 
-Sorting table columns;
-Search inside table;
+This app helps you to calculate profit from your crypto investments
+Login to start =)
