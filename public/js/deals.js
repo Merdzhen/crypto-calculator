@@ -59,6 +59,7 @@ dealForm.addEventListener('submit', async (e) => {
         profitAmount.classList.add('red-text');
       }
     } else { // если ошибка выводим ошибку
+      regAnswer.style.display = 'none';
       regErr.style.display = 'initial';
       regErr.innerHTML = result.message;
     }
