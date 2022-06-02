@@ -1,6 +1,8 @@
 # crypto-calculator
+### 🖥 Stack:
+Node.js, Express, Handlebars, PostgreSQL, Sequelize, Bootstrap, CoinGecko API, Bcrypt, express-session
 
-Used: Node.js, Express, Handlebars, PostgreSQL, Sequelize, Bootstrap, CoinGecko API, Bcrypt, express-session
+---
 
 Run with 'npm start'
 
