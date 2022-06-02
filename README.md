@@ -14,17 +14,17 @@ On the main page you can see top 100 coins due to current market capitalization:
 I used CoinGecko API to download data.
 I also implemented searching by coin name and id:
 
-<img alt="main-page-search" src="./main-page-search.png" />
+<img alt="main-page-search" src="./images-readme/main-page-search.png" />
 
 and  sorting by price, 24h change and market capitalization. This is an example of sorting by 24h price chaange:
 
-<img alt="main-page-sort" src="./main-page-sort.png" />
+<img alt="main-page-sort" src="./images-readme/main-page-sort.png" />
 
 After registration/login you can use main functionality in your personal account.
 Here you can calculate profit or loss from the coin that you have now in your wallet.
 Add coin id, currency used to pay for the purchase, quantity of coins and purchase date and the application will calculate current profit/loss from your deal:
 
-<img alt="my-deals" src="./my-deals.png" />
+<img alt="my-deals" src="./images-readme/my-deals.png" />
 
 I also implemented searching by coin name and sorting by any column.
 
