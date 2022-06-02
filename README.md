@@ -26,6 +26,7 @@ Add coin id, currency used to pay for the purchase, quantity of coins and purcha
 
 <img alt="my-deals" src="./images-readme/my-deals.png" />
 
+Here I take historical price and current price of the coins from CoinGecko using API and calculate current profit/loss.
 I also implemented searching by coin name and sorting by any column.
 
 To make searching coin id easily I added "Coin List" table with coin names and ids with searching possibility.
