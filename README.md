@@ -33,4 +33,4 @@ I also implemented searching by coin name and sorting by any column.
 
 To make searching coin id easily I added "Coin List" table with coin names and ids with searching possibility.
 
-Plans for development: redesign, adding functionality e.g. deleting deals, etc.
+**Plans for development:** redesign, adding functionality e.g. deleting deals, etc.
