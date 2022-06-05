@@ -6,8 +6,7 @@ Node.js, Express, Handlebars, PostgreSQL, Sequelize, Bootstrap, CoinGecko API, B
 
 Run with 'npm start'
 
-My idea was to make an application for crypto investors to help them to calculate profit or loss in their current crypto wallet.
-So I made this proto application "Crypto Profit".
+"Crypto Profit" is an application for crypto investors that helps to calculate profit or loss in current crypto wallet.
 
 On the main page you can see top 100 coins due to current market capitalization:
 
